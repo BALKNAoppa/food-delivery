@@ -1,15 +1,15 @@
-import fs from 'fs';
+import fs from "fs";
 
 export const createUser = (req, res) => {
-    const rawUserData = fs.readFileSync('src/db/users.json');
-    const users = JSON.parse(rawUserData);
-    if (rawUserData === users.username) {
-        return res.json({ message: "Username or Password did not match" })
-    }
+  const rawUserData = fs.readFileSync("src/database/users.json");
+  const users = JSON.parse(rawUserData);
+  if (rawUserData === users.username) {
+    return res.json({ message: "Username or Password did not match" });
+  }
 
-    users.push(req.body);
+  users.push(req.body);
 
-    fs.writeFileSync('src/db/users.json', JSON.stringify(users));
+  fs.writeFileSync("src/database/users.json", JSON.stringify(users));
 
-    res.json({ message: 'Success' })
-}
+  res.json({ message: "Success" });
+};

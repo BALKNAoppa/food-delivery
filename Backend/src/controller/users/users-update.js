@@ -5,7 +5,7 @@ export const updateUser = (req, res) => {
     const { username, firstname } = req.body;
 
     // users iin data unshij baigaa
-    const rawUserData = fs.readFileSync('src/db/users.json');
+    const rawUserData = fs.readFileSync('src/database/users.json');
     const users = JSON.parse(rawUserData);
 
     // uurchlult hiij baigaa
@@ -17,7 +17,7 @@ export const updateUser = (req, res) => {
     })
 
     // uurchlultuu hadgalj baigaa
-    fs.writeFileSync('src/db/users.json', JSON.stringify(newUsersData));
+    fs.writeFileSync('src/database/users.json', JSON.stringify(newUsersData));
 
     // hariu
     res.json({ message: "Success!" })
