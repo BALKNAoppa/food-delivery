@@ -1,4 +1,4 @@
-import User from './src/models/User.js';
+import { User } from './src/models/User.js';
 
 export const createUser = async (req, res) => {
   try {
@@ -8,7 +8,6 @@ export const createUser = async (req, res) => {
       return res.status(400).json({ message: 'Username is required' });
     }
 
-    // Create user (MongoDB auto-generates `_id`)
     const newUser = new User({ username });
     await newUser.save();
 
