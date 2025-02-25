@@ -1,24 +1,22 @@
-// import fs from 'fs';
+import jwt from 'jsonwebtoken';
 
-// export const updateUser = (req, res) => {
-//     // body medeellee avaj baigaa
-//     const { username, firstname } = req.body;
+export const authorizationMiddleware = (req, res, next) => {
+    const { authorization } = req.headers;
+    if (!authorization) return res.json({ message: "unauthorized!!!" })
 
-//     // users iin data unshij baigaa
-//     const rawUserData = fs.readFileSync('src/database/users.json');
-//     const users = JSON.parse(rawUserData);
+    const token = authorization.split(' ')[1]
 
-//     // uurchlult hiij baigaa
-//     const newUsersData = users.map((cur) => {
-//         if (cur.username === username)
-//             return { ...cur, firstname };
+    try {
+        jwt.verify(token, 'uneheer nuuts');
+        next();
+    } catch (err) {
+        return res.json({ message: "unauthorized!!!" })
+    }
+}
 
-//         return cur;
-//     })
-
-//     // uurchlultuu hadgalj baigaa
-//     fs.writeFileSync('src/database/users.json', JSON.stringify(newUsersData));
-
-//     // hariu
-//     res.json({ message: "Success!" })
-// }
+// 1. Create login => return token
+// 2. Send login request from postman => get token
+// 3. Put token in header of new request from postman(thunder)
+// 4. Write authorizationMiddleware
+// 5. Check token on middleware
+// 6. Put authorizationMiddleware on getUsers

@@ -1,15 +1,20 @@
-import fs from "fs";
+import User from './src/models/User.js';
 
-export const createUser = (req, res) => {
-  const rawUserData = fs.readFileSync("src/database/users.json");
-  const users = JSON.parse(rawUserData);
-  if (rawUserData === users.username) {
-    return res.json({ message: "Username or Password did not match" });
+export const createUser = async (req, res) => {
+  try {
+    const { username } = req.body;
+
+    if (!username) {
+      return res.status(400).json({ message: 'Username is required' });
+    }
+
+    // Create user (MongoDB auto-generates `_id`)
+    const newUser = new User({ username });
+    await newUser.save();
+
+    res.status(201).json({ message: 'User created', user: newUser });
+  } catch (err) {
+    console.error('MongoDB Error:', err);
+    res.status(500).json({ message: 'Server error', error: err.message });
   }
-
-  users.push(req.body);
-
-  fs.writeFileSync("src/database/users.json", JSON.stringify(users));
-
-  res.json({ message: "Success" });
 };

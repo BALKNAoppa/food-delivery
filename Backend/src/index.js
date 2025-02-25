@@ -1,5 +1,5 @@
 import express from "express";
-// import { userRouter } from "./routers/user-router.js";
+import { userRouter } from "./routers/user-router.js";
 // import { productRouter } from "./routers/product-router.js";
 import { connectDB } from "./utils/db.js";
 
@@ -10,10 +10,10 @@ const port = 3000;
 app.use(express.json());
 connectDB();
 
-// app.get("/", (req, res) => {
-//   res.send("MongoDB is connected!");
-// });
-// app.use("/users", userRouter);
+app.get("/", (req, res) => {
+  res.send("MongoDB is connected!");
+});
+app.use("/users", userRouter);
 // app.use("/products", productRouter);
 
 app.listen(port, () => {
