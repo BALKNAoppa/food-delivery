@@ -1,22 +1,17 @@
-import jwt from 'jsonwebtoken';
+import jwt from "jsonwebtoken";
 
 export const authorizationMiddleware = (req, res, next) => {
-    const { authorization } = req.headers;
-    if (!authorization) return res.json({ message: "unauthorized!!!" })
+    const token = req.headers.authorization?.split(" ")[1]; // Extract token from header
 
-    const token = authorization.split(' ')[1]
+    if (!token) {
+        return res.status(401).json({ message: "Unauthorized: No token provided" });
+    }
 
     try {
-        jwt.verify(token, 'uneheer nuuts');
-        next();
+        const decoded = jwt.verify(token, "uneheer nuuts"); // Verify token
+        req.user = decoded; // Store user info in request object
+        next(); // Move to the next middleware
     } catch (err) {
-        return res.json({ message: "unauthorized!!!" })
+        return res.status(403).json({ message: "Unauthorized: Invalid token" });
     }
-}
-
-// 1. Create login => return token
-// 2. Send login request from postman => get token
-// 3. Put token in header of new request from postman(thunder)
-// 4. Write authorizationMiddleware
-// 5. Check token on middleware
-// 6. Put authorizationMiddleware on getUsers
+};
