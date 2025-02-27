@@ -12,6 +12,5 @@ export const userRouter = express.Router();
 userRouter.get("/", authorizationMiddleware, getUsers);
 userRouter.post("/", createUser);
 userRouter.put("/", authorizationMiddleware, updateUser);
-// userRouter.delete("/", deleteUser);
 userRouter.delete("/", authorizationMiddleware, deleteUser);
 userRouter.post("/login", login);
