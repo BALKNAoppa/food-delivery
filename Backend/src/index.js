@@ -1,11 +1,11 @@
 import express from "express";
 import { userRouter } from "./routers/user-router.js";
-// import { productRouter } from "./routers/product-router.js";
 import { connectDB } from "./utils/db.js";
+import { foodRouter } from './routers/food-router.js';
+import { categoryRouter } from './routers/category-router.js';
 
 const app = express();
 const port = 3000;
-// const connectDB = require("./db");
 
 app.use(express.json());
 connectDB();
@@ -14,8 +14,16 @@ app.get("/", (req, res) => {
   res.send("MongoDB is connected!");
 });
 app.use("/users", userRouter);
-// app.use("/products", productRouter);
+app.use('/food', foodRouter);
+app.use('/category', categoryRouter);
 
 app.listen(port, () => {
   console.log(`Example app listening on port http://localhost:${port}`);
 });
+
+
+// verify // Mail
+// reset-password // Mail
+
+// sign-in, sign-up, get-user, delete-user
+// category(CRUD), food(CRUD) => FoodOrder(CRUD)
