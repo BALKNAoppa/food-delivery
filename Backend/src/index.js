@@ -1,11 +1,12 @@
 import express from "express";
+
 import { userRouter } from "./routers/user-router.js";
 import { connectDB } from "./utils/db.js";
 import { foodRouter } from './routers/food-router.js';
 import { categoryRouter } from './routers/category-router.js';
 
 const app = express();
-const port = 3000;
+const port = 5000;
 
 app.use(express.json());
 connectDB();
