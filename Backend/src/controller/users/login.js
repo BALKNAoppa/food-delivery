@@ -5,6 +5,8 @@ export const login = async (req, res) => {
   try {
     const { username, password } = req.body;
 
+    console.log(username, password)
+
     // Find user by username in MongoDB
     const user = await UserModel.findOne({ username });
 

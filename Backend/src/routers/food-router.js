@@ -6,4 +6,4 @@ import { getFoods } from "../controller/foods/get-foods.js";
 export const foodRouter = express.Router();
 
 foodRouter.get("/", getFoods);
-foodRouter.post("/", authorizationMiddleware, createFood);
+foodRouter.post("/createfood", authorizationMiddleware, createFood);
