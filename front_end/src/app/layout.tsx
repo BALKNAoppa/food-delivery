@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import { ThemeProvider } from "next-themes";
-import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
-import { AppSidebar } from "@/components/app-sidebar"
+import Header from "@/components/header/Header";
+import Footer from "@/components/footer/Footer";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -17,13 +17,11 @@ export default function MainRoot({
   return (
     <html lang="en">
       <body>
-        <SidebarProvider>
-        <AppSidebar />
           <ThemeProvider attribute="class" defaultTheme="light" enableSystem>
-            <SidebarTrigger />
+            <Header/>
             {children}
+            <Footer/>
           </ThemeProvider>
-        </SidebarProvider>
       </body>
     </html>
   );
