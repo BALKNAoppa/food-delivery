@@ -2,7 +2,7 @@ import { Film, Mail, Phone } from "lucide-react";
 
 const Footer = () => {
   return (
-    <div className="w-full px-4 sm:px-6 lg:px-8 py-10 flex justify-center gap-12 bg-background">
+    <div className="w-full px-4 sm:px-6 lg:px-8 py-10 flex justify-center gap-12 bg-[#1A1A1A]">
       <div className="flex flex-col items-start gap-[28px] flex-[1_0_0]">
         <div className="flex flex-col items-start gap-10 self-stretch">
           <div className="flex flex-col items-start gap-3">

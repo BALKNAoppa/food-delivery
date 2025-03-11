@@ -11,11 +11,11 @@ const Header = () => {
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
-    setMounted(true); // Ensure that the component only mounts in the client
+    setMounted(true);
   }, []);
 
   if (!mounted) {
-    return null; // Return null until the component is mounted on the client
+    return null;
   }
 
   return (
@@ -25,6 +25,7 @@ const Header = () => {
           href="/"
           className="flex items-center gap-x-2 text-indigo-700 cursor-pointer"
         >
+          <h1 className="text-2xl font-bold">MovieZ</h1>
         </Link>
         <div className="relative hidden lg:flex items-center gap-x-3">
           <div className="w-[97px] h-[36px] max-lg:hidden"></div>

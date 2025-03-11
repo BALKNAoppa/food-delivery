@@ -3,7 +3,8 @@
 export default function Home() {
   return (
     <div className="w-screen">
-      <p>test</p>
+      <p>Somthing</p>
+      <div>something</div>
     </div>
   );
 } 
