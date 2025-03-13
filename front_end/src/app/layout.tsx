@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import { ThemeProvider } from "next-themes";
 import Header from "@/components/header/Header";
 import Footer from "@/components/footer/Footer";
 
@@ -17,11 +16,9 @@ export default function MainRoot({
   return (
     <html lang="en">
       <body>
-          <ThemeProvider attribute="class" defaultTheme="light" enableSystem>
             <Header/>
             {children}
             <Footer/>
-          </ThemeProvider>
       </body>
     </html>
   );

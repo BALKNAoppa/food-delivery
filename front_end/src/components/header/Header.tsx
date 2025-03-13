@@ -1,13 +1,10 @@
 "use client";
 import React, { useState, useEffect } from "react";
-import { Search, Moon, Sun } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { useTheme } from "next-themes";
-import { Input } from "@/components/ui/input";
 import Link from "next/link";
+import { ShoppingCart, User, MapPin, ChevronRight } from "lucide-react";
 
 const Header = () => {
-  const { setTheme, theme } = useTheme();
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
@@ -21,34 +18,26 @@ const Header = () => {
   return (
     <div className="inset-x-0 h-[59px] bg-background flex items-center justify-center">
       <div className="flex items-center justify-between w-full max-w-screen-xl px-5 lg:px-0">
-        <Link
-          href="/"
-          className="flex items-center gap-x-2 text-indigo-700 cursor-pointer"
-        >
-          <h1 className="text-2xl font-bold">MovieZ</h1>
+        <Link href="/" className="flex items-center gap-x-2 cursor-pointer">
+          <h1 className="text-2xl font-bold">Logo will here</h1>
         </Link>
-        <div className="relative hidden lg:flex items-center gap-x-3">
-          <div className="w-[97px] h-[36px] max-lg:hidden"></div>
-          <div className="w-[379px] h-[36px] max-lg:hidden">
-            <div className="relative w-full">
-              <Input
-                placeholder="Search..."
-                className="pl-10 pr-4 w-full border border-gray-300 rounded-md focus:ring focus:ring-indigo-300"
-              />
-              <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 w-5 h-5" />
-            </div>
-          </div>
-        </div>
         <div className="flex items-center gap-x-3">
-          <Button className="w-9 h-9 lg:hidden" variant={"outline"}>
-            <Search />
+          <Button variant="outline" className="w-[251px] h-[36px] rounded-full">
+            <MapPin className="w-5 h-5" color="red" />
+            <span className="text-red-500 text text-xs font-normal leading-4 tracking-normal">
+              Delivery address:
+            </span>
+            <span className="text text-xs font-normal leading-4 tracking-normal text-[#71717A]">
+              Add location
+            </span>
+            <ChevronRight className="w-5 h-5" color="#71717A" />
           </Button>
-          <Button
-            variant="outline"
-            className="w-9 h-9"
-            onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
-          >
-            {theme === "dark" ? <Sun /> : <Moon />}
+          <Button variant="default" className="w-9 h-9 bg-red-500 rounded-full">
+            <ShoppingCart className="w-6 h-6" />
+          </Button>
+          <Button variant="outline" className="w-25 h-9">
+            <User className="w-6 h-6" />
+            <span>Нэвтрэх</span>
           </Button>
         </div>
       </div>

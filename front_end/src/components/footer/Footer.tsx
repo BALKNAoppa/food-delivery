@@ -1,21 +1,21 @@
-import { Film, Mail, Phone } from "lucide-react";
+import { Pizza, Mail, Phone } from "lucide-react";
 
 const Footer = () => {
   return (
     <div className="w-full px-4 sm:px-6 lg:px-8 py-10 flex justify-center gap-12 bg-[#1A1A1A]">
-      <div className="flex flex-col items-start gap-[28px] flex-[1_0_0]">
+      <div className="flex flex-col items-start gap-[28px] w-full max-w-screen-xl flex-[1_0_0]">
         <div className="flex flex-col items-start gap-10 self-stretch">
           <div className="flex flex-col items-start gap-3">
             <div className="flex items-center gap-2 text-[#FAFAFA]">
-              <Film className="w-5 h-5" />
-              <h4 className="font-bold italic">Movie Z</h4>
+              <Pizza className="w-5 h-5" />
+              <h4 className="font-bold italic">Logo will here</h4>
             </div>
             <p className="text-[#FAFAFA] text-sm font-inter font-normal leading-5">
-              © 2024 Movie Z. All Rights Reserved.
+              © 2024 Balkana Delivery. All Rights Reserved.
             </p>
           </div>
         </div>
-        <div className="flex items-start gap-[48px] self-stretch text-[#FAFAFA]">
+        <div className="flex items-start gap-[48px]  text-[#FAFAFA]">
           <div className="flex flex-col items-start gap-3">
             <p className="flex flex-col items-start gap-3 flex-[1_0_0] self-stretch text-[#FAFAFA] text-sm font-inter font-normal leading-5">
               Contact Information
@@ -27,7 +27,7 @@ const Footer = () => {
                 </div>
                 <div className="flex flex-col items-start">
                   <p>Email:</p>
-                  <p>support@movieZ.com</p>
+                  <p>balkana@email.com</p>
                 </div>
               </div>
               <div className="flex items-center gap-3">
@@ -36,7 +36,7 @@ const Footer = () => {
                 </div>
                 <div className="flex flex-col items-start">
                   <p>Phone:</p>
-                  <p>+976 1123-4567</p>
+                  <p>+976 1234-5678</p>
                 </div>
               </div>
             </div>

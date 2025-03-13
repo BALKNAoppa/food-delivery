@@ -15,11 +15,11 @@ export const login = async (req, res) => {
       return res.status(401).json({ message: "Username or Password did not match" });
     }
 
-    // Generate a JWT token (only store necessary data)
+    // Generate a JWT token
     const token = jwt.sign(
-      { id: user._id, username: user.username }, // Store only necessary info
-      "uneheer nuuts", // Secret key (should be in .env)
-      { expiresIn: "1h" } // Token expires in 1 hour
+      { id: user._id, username: user.username },
+      "uneheer nuuts",
+      { expiresIn: "1h" }
     );
 
     res.json({ token });
