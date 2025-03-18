@@ -37,7 +37,7 @@ const Header = () => {
           </Button>
           <Button variant="outline" className="w-25 h-9">
             <User className="w-6 h-6" />
-            <span>Нэтрэх</span>
+            <span>Нэвтрэх</span>
           </Button>
         </div>
       </div>
