@@ -12,7 +12,7 @@ export const getUsers = async (req, res) => {
 
     res.json(users);
   } catch (err) {
-    console.error("MongoDB Error:", err);
+    console.error("Mongo Error:", err);
     res.status(500).json({ message: "Server error", error: err.message });
   }
 };

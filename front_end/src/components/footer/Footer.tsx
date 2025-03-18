@@ -1,57 +1,88 @@
-import { Pizza, Mail, Phone } from "lucide-react";
+import { Pizza, Facebook, Instagram } from "lucide-react";
+import React from "react";
+// import { useNavigate } from "react-router-dom";
 
 const Footer = () => {
+  // const navigate = useNavigate();
+
+  // const handleClick = () => {
+  //   navigate('/new-path');
+  // };
+
   return (
-    <div className="w-full px-4 sm:px-6 lg:px-8 py-10 flex justify-center gap-12 bg-[#1A1A1A]">
-      <div className="flex flex-col items-start gap-[28px] w-full max-w-screen-xl flex-[1_0_0]">
-        <div className="flex flex-col items-start gap-10 self-stretch">
-          <div className="flex flex-col items-start gap-3">
-            <div className="flex items-center gap-2 text-[#FAFAFA]">
-              <Pizza className="w-5 h-5" />
-              <h4 className="font-bold italic">Logo will here</h4>
-            </div>
-            <p className="text-[#FAFAFA] text-sm font-inter font-normal leading-5">
-              © 2024 Balkana Delivery. All Rights Reserved.
-            </p>
+    <div className="w-full px-4 sm:px-6 lg:px-8 py-10 gap-12 bg-[#1A1A1A] text-[#FAFAFA]">
+      {/* Middle section of footer */}
+      <div className="w-[1440px] mx-auto flex my-5 flex-wrap">
+        <div className="flex-1 min-w-[300px] p-6 text-white text-center rounded-lg my-5">
+          <div className="flex items-center gap-2">
+            <Pizza className="w-5 h-5" />
+            <h4 className="font-bold italic">Logo will here</h4>
           </div>
         </div>
-        <div className="flex items-start gap-[48px]  text-[#FAFAFA]">
-          <div className="flex flex-col items-start gap-3">
-            <p className="flex flex-col items-start gap-3 flex-[1_0_0] self-stretch text-[#FAFAFA] text-sm font-inter font-normal leading-5">
-              Contact Information
-            </p>
-            <div className="flex flex-col items-start gap-6">
-              <div className="flex items-center gap-3">
-                <div>
-                  <Mail className="w-4 h-4" />
-                </div>
-                <div className="flex flex-col items-start">
-                  <p>Email:</p>
-                  <p>balkana@email.com</p>
-                </div>
-              </div>
-              <div className="flex items-center gap-3">
-                <div>
-                  <Phone className="w-4 h-4" />
-                </div>
-                <div className="flex flex-col items-start">
-                  <p>Phone:</p>
-                  <p>+976 1234-5678</p>
-                </div>
-              </div>
+        <div className="flex-1 p-6 text-white flex justify-between">
+          <div className="flex flex-col gap-2">
+            <span className="text-[rgb(113,113,122)]">BALKANA</span>
+            <div className="flex flex-col justify-start gap-2">
+              <span className="cursor-pointer hover:underline">HOME</span>
+              <span className="cursor-pointer hover:underline">CONTACT US</span>
+              <span className="cursor-pointer hover:underline">
+                DELIVERY ZONE
+              </span>
             </div>
           </div>
-          <div className="flex flex-col items-start gap-3 flex-[1_0_0]">
-            <p className="text-[#FAFAFA] text-sm font-inter font-normal leading-5">
-              Follow us
-            </p>
-            <div className="flex flex-col justify-center items-start gap-3">
-              <p className="text-[#FAFAFA] text-sm font-inter font-medium leading-5">Facebook</p>
-              <p className="text-[#FAFAFA] text-sm font-inter font-medium leading-5">Instagram</p>
-              <p className="text-[#FAFAFA] text-sm font-inter font-medium leading-5">Twitter</p>
-              <p className="text-[#FAFAFA] text-sm font-inter font-medium leading-5">Youtube</p>
+          <div className="flex flex-col justify-start gap-2">
+            <span className="text-[rgb(113,113,122)]">MENU</span>
+            <div className="flex flex-col justify-start gap-2">
+              <span className="cursor-pointer hover:underline">PIZZA</span>
+              <span className="cursor-pointer hover:underline">DRINKS</span>
+              <span className="cursor-pointer hover:underline">DESSERTS</span>
             </div>
           </div>
+          <div className="flex flex-col gap-2">
+            <span className="text-[rgb(113,113,122)]">FOLLOW US</span>
+            <div className="flex justify-start gap-2">
+              <a
+                href="https://www.facebook.com"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <Facebook className="cursor-pointer" />
+              </a>
+              <a
+                href="https://www.instagram.com"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <Instagram className="cursor-pointer" />
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+      {/* buttom section of footer */}
+      <div className="my-5">
+        <div className="w-[1440px] mx-auto flex gap-12 text-sm text-[rgb(113,113,122)]">
+          <a href=""
+          >
+            <span className="cursor-pointer hover:underline">
+              Copyright 2024 © BALKANA
+            </span>
+          </a>
+          <a href="">
+            <span className="cursor-pointer hover:underline">
+              Privacy Policy
+            </span>
+          </a>
+          <a href="">
+            <span className="cursor-pointer hover:underline">
+              Terms and Condition
+            </span>
+          </a>
+          <a href="">
+            <span className="cursor-pointer hover:underline">
+              Cookie policy
+            </span>
+          </a>
         </div>
       </div>
     </div>
