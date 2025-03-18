@@ -18,6 +18,6 @@ export const getFoods = async (req, res) => {
     res.json({ message: "success", data: formattedFoods });
   } catch (err) {
     console.error("Error in getFoods:", err);
-    res.status(500).json({ message: "Error occured", error: err.message });
+    res.status(500).json({ message: "Error occurred", error: err.message });
   }
 };
