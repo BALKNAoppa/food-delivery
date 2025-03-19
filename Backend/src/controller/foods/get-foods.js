@@ -4,7 +4,7 @@ export const getFoods = async (req, res) => {
   try {
     const foods = await FoodModel.find().populate("category");
 
-    console.log("Foods from database:", foods); // ✅ Check raw data from DB
+    console.log("Foods from database:", foods);
 
     const formattedFoods = foods.map((food) => ({
       _id: food._id,
@@ -13,6 +13,7 @@ export const getFoods = async (req, res) => {
       image: food.image,
       ingredients: food.ingredients,
       category: food.category.map((cur) => cur.categoryName),
+      calories: food.calories,  // Added calories field here
     }));
 
     res.json({ message: "success", data: formattedFoods });
