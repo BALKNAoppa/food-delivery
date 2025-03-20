@@ -10,12 +10,11 @@ export const createFood = async (req, res) => {
     if (!price) return res.status(400).json({ message: "price is required" });
     if (!category) return res.status(400).json({ message: "category is required" });
 
-    // Extract the numeric part of calories if it's a string like "96 (per 1.5 oz serving)"
     let caloriesValue = calories;
     if (typeof calories === "string") {
       const match = calories.match(/(\d+)(?:\s?[^0-9]*)$/);
       if (match) {
-        caloriesValue = parseInt(match[1], 10); // Only get the number part
+        caloriesValue = parseInt(match[1], 10);
       }
     }
 
