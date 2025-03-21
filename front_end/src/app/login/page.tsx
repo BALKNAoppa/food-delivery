@@ -1,17 +1,29 @@
 "use client";
 
 import React, { useState } from "react";
+import { useRouter } from "next/navigation";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import axios from "axios";
+import { toast } from "sonner";
+import { Progress } from "@/components/ui/progress"; // Import the Progress component from ShadCN
 
 const LogIn = () => {
   const [emailOrUsername, setEmailOrUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [loading, setLoading] = useState(false); // Add loading state
+  const [progress, setProgress] = useState(0); // Progress state
+  const router = useRouter();
 
   const handleLogin = async () => {
+    setLoading(true); // Set loading to true when request starts
+
     try {
+      // Simulate progress updates (e.g., 0% -> 50% -> 100%) while waiting for the response
+      setProgress(30);
+      await new Promise(resolve => setTimeout(resolve, 500)); // simulate delay for progress
+      setProgress(70);
       const { data } = await axios.post(
         "https://food-delivery-backend-navy-eight.vercel.app/users/login",
         {
@@ -19,11 +31,23 @@ const LogIn = () => {
           password,
         }
       );
+      setProgress(100); // Full progress when done
 
       console.log(data);
-      // data.token
+
+      if (data.token) {
+        localStorage.setItem("userToken", data.token);
+
+        toast.success("Login successful! You are now logged in.");
+
+        setTimeout(() => router.push("/"), 3000);
+      }
     } catch (err) {
-      console.log(err);
+      console.error("Login failed:", err);
+
+      toast.error("Login failed! Please check your information and try again.");
+    } finally {
+      setLoading(false); // Set loading to false after request is completed
     }
   };
 
@@ -50,9 +74,22 @@ const LogIn = () => {
             className="w-full"
           />
         </div>
-        <Button onClick={handleLogin} className="w-[251px] h-[36px]">
-          Sign In
+
+        {/* Show progress when loading */}
+        {loading && (
+          <div className="w-full my-4">
+            <Progress value={progress} />
+          </div>
+        )}
+
+        <Button
+          onClick={handleLogin}
+          className="w-[251px] h-[36px]"
+          disabled={loading} // Disable the button when loading
+        >
+          {loading ? "Logging In..." : "Sign In"}
         </Button>
+
         <p className="text-base text-[12px] font-normal leading-6 tracking-normal align-middle text-[rgba(113,113,122,1)] mt-4">
           Don&apos;t have an account?{" "}
           <Link className="text-blue-500" href="/signup">
