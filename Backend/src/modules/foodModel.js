@@ -8,6 +8,7 @@ const FoodSchema = mongoose.Schema({
   category: [{ type: mongoose.Schema.Types.ObjectId, ref: "foodCategory" }],
   createdAt: { type: Date, default: new Date() },
   updatedAt: { type: Date, default: new Date() },
+  calories: { type: Number, required: true },
 });
 
 export const FoodModel =
