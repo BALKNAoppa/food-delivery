@@ -13,7 +13,8 @@ export const getFoods = async (req, res) => {
       image: food.image,
       ingredients: food.ingredients,
       category: food.category.map((cur) => cur.categoryName),
-      calories: food.calories,  // Added calories field here
+      calories: food.calories,
+      description: food.description,
     }));
 
     res.json({ message: "success", data: formattedFoods });
