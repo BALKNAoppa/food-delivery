@@ -55,7 +55,7 @@ const LogIn = () => {
           "Login failed! Please check your information and try again."
         );
       }
-    } catch (error) {
+    } catch  {
       setError({ emailOrUsername: true, password: true });
       toast.error("Login failed! Please check your information and try again.");
     } finally {
@@ -82,7 +82,6 @@ const LogIn = () => {
           <p className="text-2xl font-semibold">Log In</p>
         </div>
 
-        {/* FORM - Enables Enter key submission */}
         <form
           onSubmit={handleLogin}
           className="w-full flex flex-col items-center gap-4"
@@ -97,6 +96,7 @@ const LogIn = () => {
           />
           <div className="relative w-full">
             <Input
+            placeholder="Password"
               type={showPassword ? "text" : "password"}
               value={password}
               onChange={(e) => handleInputChange(e, "password")}

@@ -19,7 +19,6 @@ export function Category() {
   const fetchCategory = async () => {
     try {
       const categoryList = await getCategory("category");
-      console.log("Category data:", categoryList); // Log the fetched data
       if (Array.isArray(categoryList)) {
         setCategory(categoryList);
       } else {
@@ -34,9 +33,7 @@ export function Category() {
     fetchCategory();
   }, []);
 
-  // Function to handle category button click and navigate to the category page
   const handleCategoryClick = (categoryName: string) => {
-    // Navigate to the category page, e.g., /category/{categoryName}
     router.push(`/category/${categoryName}`);
   };
 
@@ -51,12 +48,12 @@ export function Category() {
         {category.length > 0 ? (
           category.map((categoryItem) => (
             <Button
-              key={categoryItem._id} // Use key as category id
-              variant="outline" // Apply outline style from ShadCN
-              onClick={() => handleCategoryClick(categoryItem.categoryName)} // Handle the click to navigate
+              key={categoryItem._id}
+              variant="outline"
+              onClick={() => handleCategoryClick(categoryItem.categoryName)}
               className="px-6 py-3 text-lg rounded-full border-2 border-gray-300 hover:bg-gray-100 transition duration-200 ease-in-out"
             >
-              {categoryItem.categoryName} {/* Display the category name */}
+              {categoryItem.categoryName}
             </Button>
           ))
         ) : (
