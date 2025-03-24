@@ -8,4 +8,4 @@ export const categoryRouter = express.Router();
 
 categoryRouter.post('/', authorizationMiddleware, createCategory)
 categoryRouter.put('/update', authorizationMiddleware, updateCategory)
-categoryRouter.get('/', authorizationMiddleware, getCategories)
+categoryRouter.get('/', getCategories)
