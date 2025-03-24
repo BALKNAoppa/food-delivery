@@ -1,7 +1,7 @@
 import { Plus } from "lucide-react";
 import { useEffect, useState } from "react";
 import { getFood } from "@/utils/getFoods";
-// import { useRouter } from "next/navigation";
+import { log } from "console";
 
 type Food = {
   _id: string;
@@ -9,6 +9,7 @@ type Food = {
   category: string;
   price: number;
   imageUrl: string;
+  description: string;
 };
 
 export function FoodCart() {
@@ -21,6 +22,7 @@ export function FoodCart() {
       setLoading(true);
       setError(null);
       const foodList = await getFood("food");
+      console.log("TEST", foodList );
       if (Array.isArray(foodList)) {
         setFoods(foodList);
       } else {
@@ -38,7 +40,6 @@ export function FoodCart() {
     fetchFood();
   }, []);
 
-  // Group foods by category
   const groupedFoods = foods.reduce((acc: { [key: string]: Food[] }, foodItem) => {
     if (!acc[foodItem.category]) {
       acc[foodItem.category] = [];
@@ -65,7 +66,7 @@ export function FoodCart() {
                   <img src={foodItem.imageUrl} alt={foodItem.foodName} className="w-full h-40 object-cover" />
                   <div className="p-4">
                     <h3 className="text-lg font-semibold text-red-600">{foodItem.foodName}</h3>
-                    <p className="text-gray-600">Fluffy pancakes stacked with fruits, cream, syrup, and powdered sugar.</p>
+                    <p className="text-gray-600">{foodItem.description}</p> {/* Displaying description here */}
                     <div className="mt-2 flex justify-between items-center">
                       <span className="text-gray-800 font-bold">${foodItem.price.toFixed(2)}</span>
                       <button className="bg-red-500 text-white p-2 rounded-full">
