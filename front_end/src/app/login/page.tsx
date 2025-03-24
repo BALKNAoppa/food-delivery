@@ -15,18 +15,19 @@ const LogIn = () => {
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
   const [progress, setProgress] = useState(0);
-  const [error, setError] = useState({ emailOrUsername: false, password: false }); // Error state
+  const [error, setError] = useState({
+    emailOrUsername: false,
+    password: false,
+  }); // Error state
   const [showPassword, setShowPassword] = useState(false); // State to toggle password visibility
   const router = useRouter();
 
   const handleLogin = async (event: React.FormEvent) => {
-    event.preventDefault(); // Prevent form from refreshing the page
+    event.preventDefault();
     setLoading(true);
-    setError({ emailOrUsername: false, password: false }); // Reset errors
-
-    // Check if inputs are empty and set error state accordingly (but don't apply red border yet)
+    setError({ emailOrUsername: false, password: false });
     if (!emailOrUsername || !password) {
-      return; // Don't apply red borders yet; let user type first
+      return;
     }
 
     try {
@@ -49,25 +50,28 @@ const LogIn = () => {
         toast.success("Login successful! You are now logged in.");
         setTimeout(() => router.push("/"), 3000);
       } else {
-        setError({ emailOrUsername: true, password: true }); // Mark both fields as error if login fails
-        toast.error("Login failed! Please check your information and try again.");
+        setError({ emailOrUsername: true, password: true });
+        toast.error(
+          "Login failed! Please check your information and try again."
+        );
       }
-    } catch (err) {
-      setError({ emailOrUsername: true, password: true }); // If there is an error, set both fields as error
+    } catch (error) {
+      setError({ emailOrUsername: true, password: true });
       toast.error("Login failed! Please check your information and try again.");
     } finally {
       setLoading(false);
     }
   };
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>, field: string) => {
+  const handleInputChange = (
+    e: React.ChangeEvent<HTMLInputElement>,
+    field: string
+  ) => {
     if (field === "emailOrUsername") {
       setEmailOrUsername(e.target.value);
     } else if (field === "password") {
       setPassword(e.target.value);
     }
-
-    // Clear the red border when the user starts typing in the field
     setError((prev) => ({ ...prev, [field]: false }));
   };
 
@@ -79,24 +83,28 @@ const LogIn = () => {
         </div>
 
         {/* FORM - Enables Enter key submission */}
-        <form onSubmit={handleLogin} className="w-full flex flex-col items-center gap-4">
+        <form
+          onSubmit={handleLogin}
+          className="w-full flex flex-col items-center gap-4"
+        >
           <Input
             placeholder="Email or Username"
             value={emailOrUsername}
             onChange={(e) => handleInputChange(e, "emailOrUsername")}
-            className={`w-full ${error.emailOrUsername ? 'border-red-500' : ''}`} // Red border if error
+            className={`w-full ${
+              error.emailOrUsername ? "border-red-500" : ""
+            }`}
           />
           <div className="relative w-full">
             <Input
-              type={showPassword ? "text" : "password"} // Toggle password visibility
-              placeholder="Password"
+              type={showPassword ? "text" : "password"}
               value={password}
               onChange={(e) => handleInputChange(e, "password")}
-              className={`w-full ${error.password ? 'border-red-500' : ''}`} // Red border if error
+              className={`w-full ${error.password ? "border-red-500" : ""}`} 
             />
             <button
               type="button"
-              onClick={() => setShowPassword((prev) => !prev)} // Toggle password visibility
+              onClick={() => setShowPassword((prev) => !prev)}
               className="absolute top-1/2 right-3 transform -translate-y-1/2"
             >
               {showPassword ? (
@@ -112,13 +120,14 @@ const LogIn = () => {
               <Progress value={progress} />
             </div>
           )}
-
-          {/* Sign In button inside the form, triggers on Enter */}
-          <Button type="submit" className="w-[251px] h-[36px]" disabled={loading}>
+          <Button
+            type="submit"
+            className="w-[251px] h-[36px]"
+            disabled={loading}
+          >
             {loading ? "Logging In..." : "Sign In"}
           </Button>
         </form>
-
         <p className="text-[12px] text-gray-500 mt-4">
           Don&apos;t have an account?{" "}
           <Link className="text-blue-500" href="/signup">
