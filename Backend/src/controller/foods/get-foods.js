@@ -2,7 +2,10 @@ import { FoodModel } from "../../modules/foodModel.js";
 
 export const getFoods = async (req, res) => {
   try {
-    const foods = await FoodModel.find().populate("category");
+    const foods = await FoodModel.find().populate({
+      path: "category",
+      select: "categoryName",
+    });
 
     console.log("Foods from database:", foods);
 
@@ -12,7 +15,7 @@ export const getFoods = async (req, res) => {
       price: food.price,
       image: food.image,
       ingredients: food.ingredients,
-      category: food.category.map((cur) => cur.categoryName),
+      category: food.category,
       calories: food.calories,
       description: food.description,
     }));
