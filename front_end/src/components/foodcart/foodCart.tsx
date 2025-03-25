@@ -1,7 +1,7 @@
 import { Plus } from "lucide-react";
 import { useEffect, useState } from "react";
 import { getFood } from "@/utils/getFoods";
-import { log } from "console";
+import Image from "next/image";
 
 type Food = {
   _id: string;
@@ -10,6 +10,7 @@ type Food = {
   price: number;
   imageUrl: string;
   description: string;
+  image: string;
 };
 
 export function FoodCart() {
@@ -22,7 +23,7 @@ export function FoodCart() {
       setLoading(true);
       setError(null);
       const foodList = await getFood("food");
-      console.log("TEST", foodList );
+      console.log("TEST", foodList);
       if (Array.isArray(foodList)) {
         setFoods(foodList);
       } else {
@@ -40,13 +41,16 @@ export function FoodCart() {
     fetchFood();
   }, []);
 
-  const groupedFoods = foods.reduce((acc: { [key: string]: Food[] }, foodItem) => {
-    if (!acc[foodItem.category]) {
-      acc[foodItem.category] = [];
-    }
-    acc[foodItem.category].push(foodItem);
-    return acc;
-  }, {});
+  const groupedFoods = foods.reduce(
+    (acc: { [key: string]: Food[] }, foodItem) => {
+      if (!acc[foodItem.category]) {
+        acc[foodItem.category] = [];
+      }
+      acc[foodItem.category].push(foodItem);
+      return acc;
+    },
+    {}
+  );
 
   return (
     <div className="max-w-screen-xl mx-auto p-4">
@@ -62,13 +66,26 @@ export function FoodCart() {
             </h2>
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-6">
               {groupedFoods[category].map((foodItem) => (
-                <div key={foodItem._id} className="bg-white rounded-lg shadow-md overflow-hidden relative">
-                  <img src={foodItem.imageUrl} alt={foodItem.foodName} className="w-full h-40 object-cover" />
+                <div
+                  key={foodItem._id}
+                  className="bg-white rounded-lg shadow-md overflow-hidden relative"
+                >
+                  <Image
+                    src={foodItem.image}
+                    alt={foodItem.foodName}
+                    width={300}
+                    height={200}
+                    className="w-full h-40 object-cover"
+                  />
                   <div className="p-4">
-                    <h3 className="text-lg font-semibold text-red-600">{foodItem.foodName}</h3>
-                    <p className="text-gray-600">{foodItem.description}</p> {/* Displaying description here */}
+                    <h3 className="text-lg font-semibold text-red-600">
+                      {foodItem.foodName}
+                    </h3>
+                    <p className="text-gray-600">{foodItem.description}</p>
                     <div className="mt-2 flex justify-between items-center">
-                      <span className="text-gray-800 font-bold">${foodItem.price.toFixed(2)}</span>
+                      <span className="text-gray-800 font-bold">
+                        ${foodItem.price.toFixed(2)}
+                      </span>
                       <button className="bg-red-500 text-white p-2 rounded-full">
                         <Plus size={16} />
                       </button>
