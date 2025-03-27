@@ -21,7 +21,7 @@ export function Category() {
     try {
       const categoryList = await getCategory("category");
       console.log("categoryList", categoryList);
-      
+
       if (Array.isArray(categoryList)) {
         setCategory(categoryList);
       } else {
@@ -38,8 +38,8 @@ export function Category() {
     fetchCategory();
   }, []);
 
-  const handleCategoryClick = (categoryName: string) => {
-    router.push(`/category/${categoryName}`);
+  const handleCategoryClick = (categoryId: string) => {
+    router.push(`/category/${categoryId}`);
   };
 
   return (
@@ -58,7 +58,7 @@ export function Category() {
               <Button
                 key={categoryItem._id}
                 variant="outline"
-                onClick={() => handleCategoryClick(categoryItem.categoryName)}
+                onClick={() => handleCategoryClick(categoryItem._id)} // Pass _id here
                 className="px-6 py-3 text-lg rounded-full border-2 border-gray-300 hover:bg-gray-100 transition duration-200 ease-in-out"
               >
                 {categoryItem.categoryName}

@@ -19,7 +19,10 @@ export const getFood = async (food: string) => {
     } else if (response.data && Array.isArray(response.data.data)) {
       return response.data.data;
     } else {
-      console.error("Fetched data is not an array or does not contain 'data' array:", response.data);
+      console.error(
+        "Fetched data is not an array or does not contain 'data' array:",
+        response.data
+      );
       return [];
     }
   } catch (error) {

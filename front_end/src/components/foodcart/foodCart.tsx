@@ -25,6 +25,7 @@ export function FoodCart() {
         setLoading(true);
         setError(null);
         const foodList = await getFood("food");
+        console.log("foodList", foodList);
         if (Array.isArray(foodList)) {
           setFoods(foodList);
         } else {
@@ -79,7 +80,6 @@ export function FoodCart() {
                   <Image src={foodItem.image} alt={foodItem.foodName} width={300} height={200} className="w-full h-40 object-cover" />
                   <div className="p-4">
                     <h3 className="text-lg font-semibold text-red-600">{foodItem.foodName}</h3>
-                    {/* Description grows without affecting food cart height */}
                     <p className="text-gray-600 text-sm justify text-justify max-h-12 overflow-hidden group-hover:max-h-[5rem] group-hover:overflow-visible transition-all duration-500 ease-in-out">
                       {foodItem.description}
                     </p>
