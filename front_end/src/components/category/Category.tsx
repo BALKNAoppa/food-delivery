@@ -58,7 +58,7 @@ export function Category() {
               <Button
                 key={categoryItem._id}
                 variant="outline"
-                onClick={() => handleCategoryClick(categoryItem._id)} // Pass _id here
+                onClick={() => handleCategoryClick(categoryItem._id)}
                 className="px-6 py-3 text-lg rounded-full border-2 border-gray-300 hover:bg-gray-100 transition duration-200 ease-in-out"
               >
                 {categoryItem.categoryName}
