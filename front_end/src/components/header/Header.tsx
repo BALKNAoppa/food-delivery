@@ -2,16 +2,9 @@
 import React, { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
-import { ShoppingCart, User, MapPin, ChevronRight, Pizza } from "lucide-react";
+import { User, MapPin, ChevronRight, Pizza } from "lucide-react";
 import { useRouter } from "next/navigation";
-import {
-  Sheet,
-  SheetContent,
-  SheetDescription,
-  SheetHeader,
-  SheetTitle,
-  SheetTrigger,
-} from "@/components/ui/sheet";
+
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -21,6 +14,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { Input } from "../ui/input";
+import { OrderSidebar } from "../OrderSidebar";
 
 const Header = () => {
   const [mounted, setMounted] = useState(false);
@@ -75,7 +69,7 @@ const Header = () => {
                 <DropdownMenuContent className="w-[251px] p-4 border border-gray-300 rounded-lg">
                   <DropdownMenuLabel className="flex items-start justify-start p-0">
                     Delivery address
-                    </DropdownMenuLabel>
+                  </DropdownMenuLabel>
                   <DropdownMenuSeparator />
                   <div className="gap-2 flex flex-col">
                     <div>
@@ -87,29 +81,7 @@ const Header = () => {
                   </div>
                 </DropdownMenuContent>
               </DropdownMenu>
-              <Sheet>
-                <SheetTrigger>
-                  <Button
-                    variant="default"
-                    className="w-9 h-9 bg-red-500 rounded-full"
-                  >
-                    <ShoppingCart className="w-6 h-6" />
-                  </Button>
-                </SheetTrigger>
-                <SheetContent>
-                  <SheetHeader>
-                    <SheetTitle>Захиалга</SheetTitle>
-                    <SheetDescription>
-                      <Button
-                        variant="default"
-                        className="border-box rounded-full hover:bg-red-500 hover:text-white bg-white text-red-500 border border-red-500 w-full h-9 flex items-center justify-center hover:scale-103 transition duration-300 ease-in-out"
-                      >
-                        Захиалах
-                      </Button>
-                    </SheetDescription>
-                  </SheetHeader>
-                </SheetContent>
-              </Sheet>
+              <OrderSidebar />
             </>
           )}
           {isLoggedIn ? (

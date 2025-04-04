@@ -1,27 +1,78 @@
 "use client";
 
-import { createContext, PropsWithChildren, useContext, useState } from "react";
+import { Food } from "@/components/foodcart/foodCart";
+import {
+  createContext,
+  PropsWithChildren,
+  useContext,
+  useEffect,
+  useState,
+} from "react";
+
+type CartItem = Food & {
+  quantity: number;
+};
+
+type CartMap = {
+  [id: string]: CartItem;
+};
 
 type CartType = {
-  addToCart: (_id: string, _quantity: number) => void;
-  cart: object;
+  cart: CartMap;
+  addToCart: (food: Food, quantity: number) => void;
+  updateQuantity: (id: string, amount: number) => void;
+  removeItem: (id: string) => void;
 };
 
 const CartContext = createContext<CartType>({} as CartType);
 
 export const CartProvider = ({ children }: PropsWithChildren) => {
-  const [cart, setCart] = useState(() => {
-    if (typeof window === "undefined") return {};
-    return JSON.parse(localStorage.getItem("cart") || "{}");
-  });
+  const [cart, setCart] = useState<CartMap>({});
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      const storedCart = localStorage.getItem("cart");
+      if (storedCart) {
+        setCart(JSON.parse(storedCart));
+      }
+    }
+  }, []);
+  useEffect(() => {
+    localStorage.setItem("cart", JSON.stringify(cart));
+  }, [cart]);
 
-  const addToCart = (id: string, quantity: number) => {
-    localStorage.setItem("cart", JSON.stringify({ ...cart, [id]: quantity }));
-    setCart({ ...cart, [id]: { quantity } });
+  const addToCart = (food: Food, quantity: number) => {
+    setCart((prev) => ({
+      ...prev,
+      [food._id]: { ...food, quantity },
+    }));
+  };
+  const updateQuantity = (id: string, amount: number) => {
+    setCart((prev) => {
+      const item = prev[id];
+      if (!item) return prev;
+  
+      const newQty = item.quantity + amount;
+      if (newQty < 1) {
+        return prev;
+      }
+      return {
+        ...prev,
+        [id]: { ...item, quantity: newQty },
+      };
+    });
+  };
+  
+
+  const removeItem = (id: string) => {
+    setCart((prev) => {
+      const rest = { ...prev };
+      delete rest[id];
+      return rest;
+    });
   };
 
   return (
-    <CartContext.Provider value={{ addToCart, cart }}>
+    <CartContext.Provider value={{ cart, addToCart, updateQuantity, removeItem }}>
       {children}
     </CartContext.Provider>
   );

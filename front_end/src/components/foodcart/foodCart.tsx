@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import { getFood } from "@/utils/getFoods";
 import { FoodCards } from "./foodCard";
-import { useCart } from "@/hooks/orders-provider";
+// import { useCart } from "@/hooks/orders-provider";
 
 export type Food = {
   _id: string;
@@ -19,7 +19,6 @@ export function FoodCart() {
   const [foods, setFoods] = useState<Food[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
-  const { cart } = useCart();
   // const [orders, setOrders] = useState<Food[]>([]);
 
   //Fetching food data from the API
@@ -61,7 +60,6 @@ export function FoodCart() {
   );
 
   // Calculate total price for all selected items
-  const totalPrice = 0;
   // const totalPrice = Object.keys(quantities).reduce((total, id) => {
   //   const foodItem = foods.find((food) => food._id === id);
   //   return total + (foodItem ? foodItem.price * quantities[id] : 0);
@@ -82,13 +80,6 @@ export function FoodCart() {
               groupedFood={groupedFood}
             />
           ))}
-          {/* Total Price Section */}
-          <div className="mt-10 p-4 bg-gray-100 rounded-lg shadow-md flex justify-between items-center">
-            <h3 className="text-xl font-semibold">Total Price:</h3>
-            <span className="text-2xl font-bold text-red-600 transition-all duration-300 ease-in-out">
-              ${totalPrice.toFixed(2)}
-            </span>
-          </div>
         </>
       )}
     </div>

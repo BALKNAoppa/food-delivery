@@ -46,16 +46,17 @@ export const FoodCards = (props: FoodCardsProps) => {
 };
 
 const FoodCard = (foodItem: Food) => {
-  const [quantity, setQuantity] = useState<number>(0);
+  const [quantity, setQuantity] = useState<number>(1);
   const { addToCart } = useCart();
 
   // Handling quantity increase
   const increaseQuantity = () => setQuantity((prev) => prev + 1);
   // Handling quantity decrease
   const decreaseQuantity = () => setQuantity((prev) => prev - 1);
+  if (quantity < 1) setQuantity(1);
   // Handle adding food item to the cart
   const handleOrderClick = () => {
-    addToCart(foodItem._id, quantity);
+    addToCart(foodItem, quantity);
     // setOrders((prev) => [...prev, foodItem]);
     // setQuantities((prev) => ({ ...prev, [foodItem._id]: 1 }));
   };
